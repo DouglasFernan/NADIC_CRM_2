@@ -31,25 +31,25 @@ Agora, entre na pasta `nadic_crm`, onde está localizado o arquivo `manage.py`. 
 
 Pronto! O servidor local deve estar em execução, e o terminal do Visual Studio Code ou da sua IDE mostrará o caminho para acessá-lo.
 
-## Passo 4: Usuários e login
+## Passo 4: Usuários e login  
 
-Eu criei um super user com as seguintes credenciais:
-user: dougfernan  
-password: ifrn.123
-Se desejar pode criar seu próprio superuser para testar as funcionalidades exigidas do projeto, como a rota (endpoint) faturamento ser disponível apenas para o usuário "Fundador"
+Eu criei um super user com as seguintes credenciais:   
+user: dougfernan    
+password: ifrn.123   
+Se desejar pode criar seu próprio superuser para testar as funcionalidades exigidas do projeto, como a rota (endpoint) faturamento ser disponível apenas para o usuário "Fundador"  
 
-Criando superuser:
-`python manage.py createsuperuser`
-
-
-Com esse usuário você poderá fazer login em:
-`http://127.0.0.1:8000/admin`
-OBS: O servidor django tem que estar ativo
+Criando superuser:  
+`python manage.py createsuperuser`    
 
 
-Por padrão o superuser e usuários comuns não vem com o grupo "Fundador" então não terá acesso a rota faturamento/, mas como o superuser tem acesso ao admin você poderá conceder esse grupo a qualquer usuário:
-### Fazer login em admin/
-### Ir na página de "users"
-### Adicionar o grupo "Fundador" ao seu superuser
-### Salve as alterações
-E pronto, agora logado como superuser e que possui a credencial de "Fundador", entre na rota faturamento pelo link ou navegando pela navbar do site para testar se está funcionando corretamente. Teste também criando outro usuário comum para confirmar que ele não tem acesso ao endpoint faturamento, crie esse usuário comum nos templates normalmente.
+Com esse usuário você poderá fazer login em:   
+`http://127.0.0.1:8000/admin`   
+OBS: O servidor django tem que estar ativo  
+  
+  
+Por padrão o superuser e usuários comuns não vem com o grupo "Fundador" então não terá acesso a rota faturamento/, mas como o superuser tem acesso ao admin você poderá conceder esse grupo a qualquer usuário:  
+### Fazer login em admin/  
+### Ir na página de "users"  
+### Adicionar o grupo "Fundador" ao seu superuser  
+### Salve as alterações  
+E pronto, agora logado como superuser e que possui a credencial de "Fundador", entre na rota faturamento pelo link ou navegando pela navbar do site para testar se está funcionando corretamente. Teste também criando outro usuário comum para confirmar que ele não tem acesso ao endpoint faturamento, crie esse usuário comum nos templates normalmente.  
