@@ -36,7 +36,7 @@ Pronto! O servidor local deve estar em execução, e o terminal do Visual Studio
 Eu criei um super user com as seguintes credenciais:   
 user: dougfernan    
 password: ifrn.123   
-Se desejar pode criar seu próprio superuser para testar as funcionalidades exigidas do projeto (como a rota (endpoint) faturamento ser disponível apenas para o usuário "Fundador" ):   
+Se desejar pode criar seu próprio superuser para testar as funcionalidades exigidas do projeto (como o endpoint faturamento ser disponível apenas para o usuário "Fundador" ):   
 
 Criando superuser:  
 `python manage.py createsuperuser`    
