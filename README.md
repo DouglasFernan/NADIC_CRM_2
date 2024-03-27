@@ -48,8 +48,14 @@ OBS: O servidor django tem que estar ativo
   
   
 Por padrão o superuser e usuários comuns não vem com o grupo "Fundador" então não terão acesso a rota faturamento/, mas como o superuser tem acesso ao admin você poderá conceder esse grupo a qualquer usuário:  
-### Fazer login em admin/  
-### Ir na página de "users"  
-### Adicionar o grupo "Fundador" ao seu superuser  
-### Salve as alterações  
+### Passos:
+
+1 - Fazer login em `http://127.0.0.1:8000/admin`   
+  
+2 - Ir na página de "users"  
+  
+3 - Adicionar o grupo "Fundador" ao seu superuser  
+  
+4 - Salve as alterações  
+  
 E pronto, agora logado como superuser e que possui a credencial de "Fundador", entre na rota faturamento pelo link ou navegando pela navbar do site para testar se está funcionando corretamente. Teste também criando outro usuário comum para confirmar que ele não tem acesso ao endpoint faturamento, crie esse usuário comum nos templates normalmente.  
