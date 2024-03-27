@@ -47,7 +47,7 @@ Com esse usuário você poderá fazer login em:
 OBS: O servidor django tem que estar ativo  
   
   
-Por padrão o superuser e usuários comuns não vem com o grupo "Fundador" então não terá acesso a rota faturamento/, mas como o superuser tem acesso ao admin você poderá conceder esse grupo a qualquer usuário:  
+Por padrão o superuser e usuários comuns não vem com o grupo "Fundador" então não terão acesso a rota faturamento/, mas como o superuser tem acesso ao admin você poderá conceder esse grupo a qualquer usuário:  
 ### Fazer login em admin/  
 ### Ir na página de "users"  
 ### Adicionar o grupo "Fundador" ao seu superuser  
