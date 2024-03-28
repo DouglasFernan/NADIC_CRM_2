@@ -53,7 +53,8 @@ def signup_view(request):
 
 
 def index(request):
-    return render(request, 'core/index.html')
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+    return render(request, 'core/index.html', {'is_founder': is_founder})
 
 
 @login_required

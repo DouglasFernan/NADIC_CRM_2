@@ -62,7 +62,9 @@
       <a href="{% url 'cadastrar' %}" class="button">Cadastrar Produto</a>
       <a href="{% url 'editar' %}" class="button">Editar Produtos</a>
       <a href="{% url 'add_venda' %}" class="button">Adicionar venda</a>
+      {% if is_founder %}
       <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
+      {% endif %}
       <!-- Botão de logout -->
       <form action="{% url 'logout' %}" method="post" class="d-inline">
           {% csrf_token %}
@@ -86,7 +88,7 @@
 
 
   <section>
-    <h1>TRILHA NADIC - CRM I</h1>
+    <h1>TRILHA NADIC - CRM II</h1>
 
     
   </section>
