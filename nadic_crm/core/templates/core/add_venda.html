@@ -26,6 +26,7 @@
             height: 150px;
             width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             border-bottom: 3px solid #dee2e6; 
@@ -57,34 +58,39 @@
     </style>
 </head>
 <body>
-  <header>
-    {% if user.is_authenticated %}
-    <div>
-      <a href="{% url 'index' %}" class="button">HOME</a>
-      <a href="{% url 'cadastrar' %}" class="button">Cadastrar Produto</a>
-      <a href="{% url 'editar' %}" class="button">Editar Produtos</a>
-      <a href="{% url 'add_venda' %}" class="button">Adicionar venda</a>
-      <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
-      <!-- Botão de logout -->
-      <form action="{% url 'logout' %}" method="post" class="d-inline">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger">Logout</button>
-      </form>
-    </div>
-    {% else %}
-    <!-- Botões de login e registro dentro da seção -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <a class="btn btn-primary btn-lg btn-block" href="{% url 'signup' %}" >Cadastrar Usuário</a>
-            </div>
-            <div class="col-md-6">
-                <a class="btn btn-primary btn-lg btn-block" href="{% url 'login' %}" >Fazer Login</a>
+    <header>
+        {% if user.is_authenticated %}
+        <div>
+          <a href="{% url 'index' %}" class="button">HOME</a>
+          <a href="{% url 'cadastrar' %}" class="button">Cadastrar Produto</a>
+          <a href="{% url 'editar' %}" class="button">Editar Produtos</a>
+          <a href="{% url 'add_venda' %}" class="button">Adicionar venda</a>
+          {% if is_founder %}
+          <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
+          {% endif %}
+          <!-- Botão de logout -->
+          <form action="{% url 'logout' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+        </div>
+        <div>
+          <h6 !impotant style="font-weight: bold;">Logado como: {{user}}</h6>
+        </div>
+        {% else %}
+        <!-- Botões de login e registro dentro da seção -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <a class="btn btn-primary btn-lg btn-block" href="{% url 'signup' %}" >Cadastrar Usuário</a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-primary btn-lg btn-block" href="{% url 'login' %}" >Fazer Login</a>
+                </div>
             </div>
         </div>
-    </div>
-    {% endif %}
-    </header>
+        {% endif %}
+      </header>
     <div id="div">
         <h1>Adicionar Venda</h1>
         <form method="post">

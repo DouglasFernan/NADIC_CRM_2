@@ -31,6 +31,7 @@
       height: 150px;
       width: 100%;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       border-bottom: 3px solid #dee2e6; 
@@ -128,12 +129,17 @@
       <a href="{% url 'cadastrar' %}" class="button">Cadastrar Produto</a>
       <a href="{% url 'editar' %}" class="button">Editar Produtos</a>
       <a href="{% url 'add_venda' %}" class="button">Adicionar venda</a>
+      {% if is_founder %}
       <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
+      {% endif %}
       <!-- Botão de logout -->
       <form action="{% url 'logout' %}" method="post" class="d-inline">
           {% csrf_token %}
           <button type="submit" class="btn btn-danger">Logout</button>
       </form>
+    </div>
+    <div>
+      <h6 style="font-weight: bold;">Logado como: {{user}}</h6>
     </div>
     {% else %}
     <!-- Botões de login e registro dentro da seção -->
