@@ -63,8 +63,8 @@
       <a href="{% url 'cadastrar' %}" class="button">Cadastrar Produto</a>
       <a href="{% url 'editar' %}" class="button">Editar Produtos</a>
       <a href="{% url 'add_venda' %}" class="button">Adicionar venda</a>
-      {% if is_founder %}
-      <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
+      {% if is_founder%}
+        <a href="{% url 'faturamento' %}" class="button">Faturamento</a>
       {% endif %}
       <!-- Botão de logout -->
       <form action="{% url 'logout' %}" method="post" class="d-inline">

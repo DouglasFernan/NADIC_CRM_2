@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models import Sum, F
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .utils import is_founder
+from .utils import is_founder  # decorador
 
 
 def login_view(request):
@@ -62,9 +62,13 @@ def editar(request):
     """
     Função de visualização para renderizar a página de edição de produtos.
     """
-    produtos = Produto.objects.all()  # Obtém todos os objetos Produto do banco de dados.
+
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
+    # Obtém todos os objetos Produto do banco de dados.
+    produtos = Produto.objects.all()
     # Renderiza o template editar.html, passando os produtos como contexto.
-    return render(request, 'core/editar.html', {'produtos': produtos})
+    return render(request, 'core/editar.html', {'produtos': produtos, 'is_founder': is_founder})
 
 
 @login_required
@@ -72,6 +76,9 @@ def update(request, id):
     """
     Função de visualização para atualizar informações de um produto.
     """
+
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
     produto = get_object_or_404(
         Produto, id=id)  # Obtém o objeto Produto com o id fornecido ou retorna um erro 404 se não encontrado.
     if request.method == 'POST':
@@ -84,7 +91,7 @@ def update(request, id):
         # Cria um formulário com os dados do objeto Produto.
         form = ProdutoForm(instance=produto)
     # Renderiza o template update.html, passando o formulário como contexto.
-    return render(request, 'core/update.html', {'form': form})
+    return render(request, 'core/update.html', {'form': form, 'is_founder': is_founder})
 
 
 @login_required
@@ -92,7 +99,10 @@ def sucesso(request):
     """
     Função de visualização para renderizar a página de sucesso.
     """
-    return render(request, 'core/sucesso.html')
+
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
+    return render(request, 'core/sucesso.html', {'is_founder': is_founder})
 
 
 @login_required
@@ -100,6 +110,8 @@ def cadastrar(request):
     """
     Função de visualização para cadastrar um novo produto.
     """
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
     if request.method == 'POST':
         # Preenche o formulário com os dados da requisição.
         form = ProdutoForm(request.POST)
@@ -109,7 +121,7 @@ def cadastrar(request):
     else:
         form = ProdutoForm()  # Cria um formulário em branco.
     # Renderiza o template cadastro.html, passando o formulário como contexto.
-    return render(request, 'core/cadastro.html', {'form': form})
+    return render(request, 'core/cadastro.html', {'form': form, 'is_founder': is_founder})
 
 
 @login_required
@@ -130,6 +142,9 @@ def add_venda(request):
     """
     Função de visualização para adicionar uma nova venda.
     """
+
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
     if request.method == 'POST':
         # Preenche o formulário com os dados da requisição.
         form = VendaForm(request.POST)
@@ -150,7 +165,7 @@ def add_venda(request):
     else:
         form = VendaForm()  # Cria um formulário em branco.
     # Renderiza o template add_venda.html, passando o formulário como contexto.
-    return render(request, 'core/add_venda.html', {'form': form})
+    return render(request, 'core/add_venda.html', {'form': form, 'is_founder': is_founder})
 
 
 @login_required
@@ -159,6 +174,9 @@ def faturamento(request):
     """
     Função de visualização para calcular e exibir o faturamento total.
     """
+
+    is_founder = request.user.groups.filter(name='Fundador').exists()
+
     total_faturamento = Venda.objects.aggregate(
         total_faturamento=Sum(F('preco_venda') * F('quantidade'),
                               output_field=models.DecimalField())
@@ -167,4 +185,4 @@ def faturamento(request):
     vendas = Venda.objects.all()  # Obtém todas as vendas do banco de dados.
 
     # Renderiza o template faturamento.html, passando as vendas e o total de faturamento como contexto.
-    return render(request, 'core/faturamento.html', {'vendas': vendas, 'total_faturamento': total_faturamento})
+    return render(request, 'core/faturamento.html', {'vendas': vendas, 'total_faturamento': total_faturamento, 'is_founder': is_founder})
